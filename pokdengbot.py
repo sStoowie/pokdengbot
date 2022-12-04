@@ -2,7 +2,7 @@ import discord
 import random
 bot = discord.Bot()
 rank = ["A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"]
-add = ["♠️", "♣️", "♥️", "♣", "♦️"]
+add = ["♠️", "♥️", "♣", "♦️"]
 card = random.choice(add)+random.choice(rank)
 @bot.event
 async def on_ready():
