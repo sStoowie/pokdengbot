@@ -22,4 +22,4 @@ def pokdeng():
         embed.set_thumbnail(url='https://i.imgur.com/tVbh1Ke.png')
         await ctx.respond(embed=embed)
     bot.run('MTA0MTI1MjE0MTM3NDkwMjM4Mg.GxipOy.b_kWP6llWII5UHAYdjk3YhBi_-TUdD5ui5v94M')
-main()
+pokdeng()
