@@ -3,4 +3,6 @@ Invited = https://discord.com/api/oauth2/authorize?client_id=1041252141374902382
 token = MTA0MTI1MjE0MTM3NDkwMjM4Mg.GxipOy.b_kWP6llWII5UHAYdjk3YhBi_-TUdD5ui5v94M
 
 bot 2
-token = 'MTA1MDA5MzgyMTEyMTI3MzkwNg.GI54x-.qoZ30dFRNYAkAFbJLQoKp3vqtJePgQ5Avk5OVg'
+token = 'MTA1MDA5MzgyMTEyMTI3MzkwNg.GDLFt5.J3bCmgsLIWkFIiYfLzflo5zVZP0Z7S-psz9FJc'
+
+รู้ละ token มันเปลี่ยนได้ตลอดไอเอิ๊ด มันเลยรันไม่ได้ 
