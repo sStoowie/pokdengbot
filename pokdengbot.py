@@ -56,5 +56,17 @@ async def main(ctx):
     embed.set_thumbnail(url='https://i.imgur.com/tVbh1Ke.png')
     embed.add_field(name="The Winner Is", value=compare(calculate_score(player_card), calculate_score(dealer_card)), inline=False)
     await ctx.respond("มาเล่นกันเถอะ!!!!", embed=embed)
+    #ตอนกดปุ่ม(interation)
+    button_hit = Button(label='Hit', style=discord.ButtonStyle.green, emoji='👍')
+    button_stay = Button(label='Stay', style=discord.ButtonStyle.red, emoji='✋')
+    async def button_callback(interation):
+        await interation.response.send_message('ทำไงต่ออะ')
+    button_hit.callback = button_callback
+    button_stay.callback = button_callback
+    # แอดปุ่ม
+    view = View()
+    view.add_item(button_hit)
+    view.add_item(button_stay)
+    await ctx.send('',view=view)
 bot.run('MTA0MTI1MjE0MTM3NDkwMjM4Mg.GWV-Wr.Nsw3we4p9g0yQU_KvsWbiINZaEsc8egfzt6c88')
 
