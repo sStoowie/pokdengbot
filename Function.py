@@ -69,3 +69,15 @@ def more10(xxx, yyy):
     if xxx+yyy >= 10:
         sum -= 10
     return sum
+
+def win():
+    sent = ["You Just Won!!! 💯", "You actually Beat Dealer!! 😱", "Player on Fire!! 🔥", "ํYou got it!! 🥶"]
+    return random.choice(sent)
+
+def lose():
+    sent = ["Dealer Win!! 👀", "Nice Try 👏🏼", "You messed up 🥶", "Dealer Bang!! 🙄"]
+    return random.choice(sent)
+
+def equal():
+    sent = ["What a luck 👻", "You both Equal 😉"]
+    return random.choice(equal)
