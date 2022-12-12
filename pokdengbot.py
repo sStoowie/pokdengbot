@@ -77,11 +77,11 @@ def more10(xxx, yyy):
     return sum
 
 def win():
-    sent = ["You Just Won!!! 💯", "You actually Beat Dealer!! 😱", "Player on Fire!! 🔥", "ํYou got it!! 🥶"]
+    sent = ["You Just Won!!! 💯", "You actually Beat Dealer!! 😱", "Player on Fire!! 🔥", "ํYou got it!! 🥶", "]
     return random.choice(sent)
 
 def lose():
-    sent = ["Dealer Win!! 👀", "Nice Try 👏🏼", "You messed up 🥶", "Dealer Bang!! 🙄"]
+    sent = ["Dealer Win!! 👀", "Nice Try 👏🏼", "You messed up 🥶", "Dealer Bang!! 🙄", "Try again next round! 😗", "GG you lose 🤪"]
     return random.choice(sent)
 
 def equal():
