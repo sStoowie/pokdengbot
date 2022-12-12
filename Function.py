@@ -58,11 +58,11 @@ def deal_rank():
 
 def compare(aaa,bbb):
     if aaa > bbb:
-        return "Player on Fire!! 🔥"
+        return win()
     if aaa == bbb:
         return "You both Equal! 🤝🏻"
     else:
-        return "Dealer Win!! 😭"
+        return lose()
 
 def more10(xxx, yyy):
     sum = xxx+yyy
@@ -71,14 +71,13 @@ def more10(xxx, yyy):
     return sum
 
 def win():
-    sent = ["You Just Won!!! 💯", "You actually Beat Dealer!! 😱", "Player on Fire!! 🔥", "ํYou got it!! 🥶"]
+    sent = ["You Just Won!!! 💯", "You actually Beat Dealer!! 😱", "Player on Fire!! 🔥", "ํYou got it!! 🥶", "]
     return random.choice(sent)
 
 def lose():
-    sent = ["Dealer Win!! 👀", "Nice Try 👏🏼", "You messed up 🥶", "Dealer Bang!! 🙄"]
+    sent = ["Dealer Win!! 👀", "Nice Try 👏🏼", "You messed up 🥶", "Dealer Bang!! 🙄", "Try again next round! 😗", "GG you lose 🤪"]
     return random.choice(sent)
 
 def equal():
     sent = ["What a luck 👻", "You both Equal 😉"]
-    return random.choice(equal)
-
+    return random.choice(sent)
