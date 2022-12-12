@@ -81,3 +81,4 @@ def lose():
 def equal():
     sent = ["What a luck 👻", "You both Equal 😉"]
     return random.choice(equal)
+
