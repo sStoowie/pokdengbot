@@ -86,7 +86,7 @@ def lose():
 
 def equal():
     sent = ["What a luck 👻", "You both Equal 😉"]
-    return random.choice(equal)
+    return random.choice(sent)
 @bot.event
 async def on_ready():
     print(bot.user, "is online!!")
@@ -153,4 +153,6 @@ async def main(ctx):
     view.add_item(button_hit)
     view.add_item(button_stay)
     await ctx.send('',view=view)
+bot.run('MTA0MTI1MjE0MTM3NDkwMjM4Mg.GhD-I5.OzoFRtMmDlAPAviyd9IWcv3r2_29izkeOE2W-Q')
+
 bot.run('Token Right here')
