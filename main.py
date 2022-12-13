@@ -9,6 +9,8 @@ def calculate_score(cards):
     comp = ["K", "Q", "J"]
     if cards[0] in comp and cards[1] in comp:
         sumscore += 0
+    elif cards[0] == 10 and cards[1] == 10:
+        sumscore += 0
     else:
         if type(cards[0]) == int:
             sumscore += cards[0]
@@ -88,7 +90,7 @@ def win():
     return random.choice(sent)
 
 def lose():
-    sent = ["Dealer Win!! 👀", "Hi newbie!! 👏🏼", "You messed up! 🥶", "Damn it!! 👿", "Try again next round! 😗", "GG you lose 🤪"]
+    sent = ["Dealer Win!! 👀", "Dealer As Always 👏🏼", "Dealer on the top!! 🥶", "Try again next round! 😗", "GG you lose 🤪"]
     return random.choice(sent)
 
 def equal():
@@ -180,7 +182,7 @@ async def main(ctx):
                     embed.add_field(name="Dealer Score", value=calculate_score(dealer_card), inline=True)
                     embed.set_thumbnail(url='https://i.imgur.com/yPdRjdq.jpeg')
                     embed.set_footer(text="© copyright by tothetop", icon_url="https://i.imgur.com/yPdRjdq.jpeg")
-                    embed.add_field(name="🏆 The Winner Is 🏆", value=compare(more10(calculate_score(player_card), calculate_extra(player_extra_card, player_card), player_extra_card, player_card, calculate_score(player_card))), inline=False)
+                    embed.add_field(name="🏆 The Winner Is 🏆", value=compare(more10(calculate_score(player_card), calculate_extra(player_extra_card, player_card), player_extra_card, player_card, calculate_score(player_card)), calculate_score(dealer_card)), inline=False)
                 else:
                     player_extra_card = []
                     player_extra_card.append(deal_card())
@@ -203,5 +205,4 @@ async def main(ctx):
         view.add_item(button_hit)
         view.add_item(button_stay)
         await ctx.send('',view=view)
-
 bot.run('Token Right here')
