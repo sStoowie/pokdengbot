@@ -84,7 +84,7 @@ def win():
     return random.choice(sent)
 
 def lose():
-    sent = ["Dealer Win!! 👀", "Hi newbie!! 👏🏼", "You messed up! 🥶", "Damn it!! 👿", "Try again next round! 😗", "GG you lose 🤪"]]
+    sent = ["Dealer Win!! 👀", "Hi newbie!! 👏🏼", "You messed up! 🥶", "Damn it!! 👿", "Try again next round! 😗", "GG you lose 🤪"]
     return random.choice(sent)
 
 def equal():
