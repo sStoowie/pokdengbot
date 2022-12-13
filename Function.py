@@ -70,6 +70,40 @@ def more10(xxx, yyy):
         sum -= 10
     return sum
 
+import random
+cards = ['K', 'Q', 'J', 10, 9, 8, 7, 6, 5, 4, 3, 2]
+ranks = ["♠️", "♣️", "♥️", "♣", "♦️"]
+namedcard = {'A': 1, 'J': 11,'Q': 12, 'K': 13}
+def pick_a_card(cards, ranks):
+    card = random.choices(cards, k=3)
+    rank = random.choices(ranks, k=3)
+    hand = card + rank
+    print(hand)
+    if hand[3] == hand[4] == hand[5]:
+        print('You Got A Flush')
+    elif hand[0] == hand[1] == hand[2]:
+        print('You Got A Three of Kind')
+    if 'K' in hand and 'Q' in hand and 'J' in hand:
+        print('That a sage')
+pick_a_card(cards, ranks)
+
+
+def isflush(hand):
+    if hand[3] == hand[4] == hand[5]:
+        print('You Got A Flush')
+
+def isthreeofkind(hand):
+    if hand[0] == hand[1] == hand[2]:
+        print('You Got A Three of Kind')
+
+def isstrightflush(hand, card):
+    if (max(card) - min(card) + 1) == len(card) and hand[3] == hand[4] == hand[5]:    ###ทำไงให้มันมองข้อความเป็นเลขตาม dict ฟังชั่นนี้ฉันไม่สามารถ😱
+        print('It a strightflush, so luckly la~')
+
+def issage(hand):
+    if 'K' in hand and 'Q' in hand and 'J' in hand:
+        print('That a sage! godly')
+
 def win():
     sent = ["You Just Won!!! 💯", "You actually Beat Dealer!! 😱", "Player on Fire!! 🔥", "ํYou got it!! 🥶", "]
     return random.choice(sent)
