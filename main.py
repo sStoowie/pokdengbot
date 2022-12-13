@@ -203,6 +203,5 @@ async def main(ctx):
         view.add_item(button_hit)
         view.add_item(button_stay)
         await ctx.send('',view=view)
-bot.run("MTA0MTI1MjE0MTM3NDkwMjM4Mg.G3UcG2.Ver9yMEyp9JmUr7HsXo6omgdvb0Q0DNbjp3TK8")
 
 bot.run('Token Right here')
