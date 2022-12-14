@@ -2,9 +2,11 @@ import discord
 import random
 from discord.ui import Button, View
 from discord.ext import commands
+import itertools, random
 bot = discord.Bot()
 
 def calculate_score(cards):
+    """Calculate Normal Deck"""
     sumscore = 0
     comp = ["K", "Q", "J"]
     if cards[0] in comp and cards[1] in comp:
@@ -33,13 +35,14 @@ def calculate_score(cards):
     return sumscore
 
 def calculate_extra(cards, cards1):
+    """Calculate extra deck"""
     sumscore = 0
     cards += cards1
     comp = ["K", "Q", "J"]
     if cards[0] in comp and cards1[0] in comp and cards1[1] in comp:
         sumscore += 10
     elif cards[0] == cards1[0] == cards1[1]:
-        sumscore += 10
+        sumscore += 0
     elif cards[0] in comp:
         sumscore += 0
     else:
@@ -54,17 +57,25 @@ def calculate_extra(cards, cards1):
     return sumscore
 
 
+rank = ["♠️", "♣️", "♥️", "♦️"]
+
 def deal_card():
     """Returns a random card"""
     cards = ["A", "K", "Q", "J", 10, 9, 8, 7, 6, 5, 4, 3, 2]
     return random.choice(cards)
 
-def deal_rank():
+
+def deal_rank(xxx):
     """Returns a random card"""
-    cards = ["♠️", "♣️", "♥️", "♦️"]
-    return random.choice(cards)
+    resl = random.choice(rank)
+    if resl in xxx:
+        resl = random.choice(rank)
+    return resl
+
+
 
 def compare(aaa,bbb):
+    "Compare Between Dealer versus Player"
     if aaa > bbb:
         return win()
     if aaa == bbb:
@@ -73,12 +84,13 @@ def compare(aaa,bbb):
         return lose()
 
 def more10(xxx, yyy, cards, cards1, var):
+    """Check that score more than 10 or not"""
     sum = xxx+yyy
     comp = ["K", "Q", "J"]
     if cards[0] in comp and cards1[0] in comp and cards1[1] in comp:
         sum = sum
     elif cards[0] == cards1[0] == cards1[1]:
-        sum = var*0+sum
+        sum = 10
     else:
         if xxx+yyy >= 10:
             sum -= 10
@@ -86,38 +98,53 @@ def more10(xxx, yyy, cards, cards1, var):
 
 
 def win():
+    """Win speech"""
     sent = ["You Just Won!!! 💯", "You actually Beat Dealer!! 😱", "Player on Fire!! 🔥", "ํYou got it!! 🥶", "Shoot!!! 😍"]
     return random.choice(sent)
 
 def lose():
+    """Lose speech"""
     sent = ["Dealer Win!! 👀", "Dealer As Always 👏🏼", "Dealer on the top!! 🥶", "Try again next round! 😗", "GG you lose 🤪"]
     return random.choice(sent)
 
 def equal():
+    """Equal speech"""
     sent = ["What a luck 👻", "You both Equal 😉"]
     return random.choice(sent)
+
+
 @bot.event
 async def on_ready():
     print(bot.user, "is online!!")
 @bot.slash_command(name = "hand", description="Draw Your 2 Cards")
 
 async def main(ctx):
-    dealer_card = []
+    #Player Part
     player_card = []
-    player_extra_rank = []
+    player_extra_card = []
     player_rank = []
-    dealer_rank = []
+    player_extra_rank = []
+
+    #Dealer Part
+    dealer_card = []
     dealer_extra = []
+    dealer_rank = []
     dealer_extra_rank = []
     for _ in range(2):
-        player_rank.append(deal_rank())
-        dealer_rank.append(deal_rank())
-    for _ in range(2):
+        player_rank.append(deal_rank(player_rank))
+        dealer_rank.append(deal_rank(dealer_rank))
         player_card.append(deal_card())
         dealer_card.append(deal_card())
+
+    #Extra
+    player_extra_card.append(deal_card())
+    player_extra_rank.append(deal_rank(player_rank))
     dealer_extra.append(deal_card())
-    dealer_extra_rank.append(deal_rank())
-    if calculate_score(dealer_card) >= 8 and calculate_score(player_card) < 8:
+    dealer_extra_rank.append(deal_rank(dealer_rank))
+
+
+
+    if calculate_score(dealer_card) == 9 and calculate_score(player_card) < 8 or calculate_score(player_card) == 9 and calculate_score(dealer_card) < 8:
         embed = discord.Embed(title="", color=0xfc0f03)
         embed.set_author(name="POKDENG", icon_url="https://i.imgur.com/yPdRjdq.jpeg")
         embed.add_field(name="Your hand", value=str(player_rank[0])+str(player_card[0])+"  "+str(player_rank[1])+str(player_card[1]), inline=True)
@@ -171,9 +198,6 @@ async def main(ctx):
         async def button_callback(interation):
             if interation.user == ctx.author:
                 if calculate_score(dealer_card) > 4:
-                    player_extra_card = []
-                    player_extra_card.append(deal_card())
-                    player_extra_rank.append(deal_rank())
                     embed = discord.Embed(title="", color=0xfc0f03)
                     embed.set_author(name="POKDENG", icon_url="https://i.imgur.com/yPdRjdq.jpeg")
                     embed.add_field(name="Your hand", value=str(player_rank[0])+str(player_card[0])+"  "+str(player_rank[1])+str(player_card[1])+"  "+str(player_extra_rank[0])+str(player_extra_card[0]), inline=True)
@@ -184,9 +208,6 @@ async def main(ctx):
                     embed.set_footer(text="© copyright by tothetop", icon_url="https://i.imgur.com/yPdRjdq.jpeg")
                     embed.add_field(name="🏆 The Winner Is 🏆", value=compare(more10(calculate_score(player_card), calculate_extra(player_extra_card, player_card), player_extra_card, player_card, calculate_score(player_card)), calculate_score(dealer_card)), inline=False)
                 else:
-                    player_extra_card = []
-                    player_extra_card.append(deal_card())
-                    player_extra_rank.append(deal_rank())
                     embed = discord.Embed(title="", color=0xfc0f03)
                     embed.set_author(name="POKDENG", icon_url="https://i.imgur.com/yPdRjdq.jpeg")
                     embed.add_field(name="Your hand", value=str(player_rank[0])+str(player_card[0])+"  "+str(player_rank[1])+str(player_card[1])+"  "+str(player_extra_rank[0])+str(player_extra_card[0]), inline=True)
