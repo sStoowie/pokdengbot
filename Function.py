@@ -3,6 +3,8 @@ def calculate_score(cards):
     comp = ["K", "Q", "J"]
     if cards[0] in comp and cards[1] in comp:
         sumscore += 0
+    elif cards[0] == 10 and cards[1] == 10:
+        sumscore += 0
     else:
         if type(cards[0]) == int:
             sumscore += cards[0]
@@ -28,13 +30,13 @@ def calculate_extra(cards, cards1):
     sumscore = 0
     cards += cards1
     comp = ["K", "Q", "J"]
-    if cards[0] == "J" and cards[1] == "K" and cards[2] == "Q":
-        sumscore += 7
+    if cards[0] in comp and cards1[0] in comp and cards1[1] in comp:
+        sumscore += 10
+    elif cards[0] == cards1[0] == cards1[1]:
+        sumscore += 10
     elif cards[0] in comp:
         sumscore += 0
     else:
-        if cards[0] == cards1[0] == cards1[1]:
-            sumscore += 7
         if type(cards[0]) == int:
             sumscore += cards[0]
         if cards[0] == "A":
@@ -60,56 +62,29 @@ def compare(aaa,bbb):
     if aaa > bbb:
         return win()
     if aaa == bbb:
-        return "You both Equal! 🤝🏻"
+        return equal()
     else:
         return lose()
 
-def more10(xxx, yyy):
+def more10(xxx, yyy, cards, cards1, var):
     sum = xxx+yyy
-    if xxx+yyy >= 10:
-        sum -= 10
+    comp = ["K", "Q", "J"]
+    if cards[0] in comp and cards1[0] in comp and cards1[1] in comp:
+        sum = sum
+    elif cards[0] == cards1[0] == cards1[1]:
+        sum = var*0+sum
+    else:
+        if xxx+yyy >= 10:
+            sum -= 10
     return sum
 
-import random
-cards = ['K', 'Q', 'J', 10, 9, 8, 7, 6, 5, 4, 3, 2]
-ranks = ["♠️", "♣️", "♥️", "♣", "♦️"]
-namedcard = {'A': 1, 'J': 11,'Q': 12, 'K': 13}
-def pick_a_card(cards, ranks):
-    card = random.choices(cards, k=3)
-    rank = random.choices(ranks, k=3)
-    hand = card + rank
-    print(hand)
-    if hand[3] == hand[4] == hand[5]:
-        print('You Got A Flush')
-    elif hand[0] == hand[1] == hand[2]:
-        print('You Got A Three of Kind')
-    if 'K' in hand and 'Q' in hand and 'J' in hand:
-        print('That a sage')
-pick_a_card(cards, ranks)
-
-
-def isflush(hand):
-    if hand[3] == hand[4] == hand[5]:
-        print('You Got A Flush')
-
-def isthreeofkind(hand):
-    if hand[0] == hand[1] == hand[2]:
-        print('You Got A Three of Kind')
-
-def isstrightflush(hand, card):
-    if (max(card) - min(card) + 1) == len(card) and hand[3] == hand[4] == hand[5]:    ###ทำไงให้มันมองข้อความเป็นเลขตาม dict ฟังชั่นนี้ฉันไม่สามารถ😱
-        print('It a strightflush, so luckly la~')
-
-def issage(hand):
-    if 'K' in hand and 'Q' in hand and 'J' in hand:
-        print('That a sage! godly')
 
 def win():
-    sent = ["You Just Won!!! 💯", "You actually Beat Dealer!! 😱", "Player on Fire!! 🔥", "ํYou got it!! 🥶", "]
+    sent = ["You Just Won!!! 💯", "You actually Beat Dealer!! 😱", "Player on Fire!! 🔥", "ํYou got it!! 🥶", "Shoot!!! 😍"]
     return random.choice(sent)
 
 def lose():
-    sent = ["Dealer Win!! 👀", "Nice Try 👏🏼", "You messed up 🥶", "Dealer Bang!! 🙄", "Try again next round! 😗", "GG you lose 🤪"]
+    sent = ["Dealer Win!! 👀", "Dealer As Always 👏🏼", "Dealer on the top!! 🥶", "Try again next round! 😗", "GG you lose 🤪"]
     return random.choice(sent)
 
 def equal():
