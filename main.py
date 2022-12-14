@@ -5,6 +5,7 @@ from discord.ext import commands
 import itertools, random
 bot = discord.Bot()
 
+
 def calculate_score(cards):
     """Calculate Normal Deck"""
     sumscore = 0
